@@ -21,7 +21,7 @@ class ArticleAdmin(admin.ModelAdmin):
                         ('otherquantianalysis', 'otherquantitxt')]}),
         ('Data analysis(methods used to extract trajectories) - qualitative (cocher si oui)',
             {'fields': ['thematique', ('otherqualianalysis', 'otherqualitxt')]}),
-        ('Variables (cocher si oui)', {'fields': [('variable1', 'variable2', 'variable3'), ('variable4', 'variable5', 'variable6')]}),
+        ('Variables (cocher si oui)', {'fields': [('variable1', 'variable2', 'variable3'), ('variable4', 'variable5', 'variable6', 'variable7')]}),
         ('Trajectories', {'fields': ['trajectoire1', 'trajectoire2', 'trajectoire3', 'trajectoire4', 'trajectoire5', 'trajectoire6', 'trajectoire7']}),
         ('Autres informations', {'fields': ['limitations', 'sousetude', 'etudemere']}),
     ]
