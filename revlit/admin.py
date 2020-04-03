@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Typepub, Typestud, Quanti, Quali, Articles
+from .models import Typepub, Typestud, Quanti, Articles
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -13,7 +13,10 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Identification', {'fields': ['docid', 'title', 'authors', 'peer', ('year', 'type', 'othertype')]}),
         ('Data source (cocher si oui)', {'fields': [('meeting', 'record'), ('psychotest', 'otherdata')]}),
-        ('Study type', {'fields': ['studytype', ('designquanti1','designquanti2'), ('designquali', 'otherqual')]}),
+        ('Study type', {'fields': ['studytype']}),
+        ('9 - Study type if quantitative', {'fields': [('designquanti1','designquanti2')]}),
+        ('10 - Study type if qualitative', {'fields': [('designquali1', 'designquali2','designquali3', 'designquali4', 'designquali5',),
+                                                  ('designquali6','otherqual')]}),
         ('Sample characteristics', {'fields': [('nparticipant', 'ratiomf'), ('age', 'ethno'),
                                                ('education', 'employment'), ('religion', 'mental'), 'othersample']}),
         ('Data analysis (methods used to extract trajectories) - quantitative (cocher si oui)',
@@ -49,4 +52,3 @@ admin.site.register(Articles, ArticleAdmin)
 admin.site.register(Typepub)
 admin.site.register(Typestud)
 admin.site.register(Quanti)
-admin.site.register(Quali)

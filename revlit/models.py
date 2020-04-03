@@ -27,19 +27,11 @@ class Quanti(models.Model):
         return '%s' % self.reponse
 
 
-class Quali(models.Model):
-    reponse_valeur = models.CharField(max_length=200)
-    reponse = models.CharField(max_length=200, )
-
-    def __str__(self):
-        return '%s' % self.reponse
-
-
 class Articles(models.Model):
     docid = models.IntegerField(blank=True, null=True, verbose_name="1- Document ID",)
-    title = models.CharField(max_length=250, verbose_name="2- Titre de la publication")
-    authors = models.CharField(max_length=250, verbose_name="3- Auteurs séparés par un ;")
-    year = models.IntegerField(verbose_name="4- Année de la publication",)
+    title = models.CharField(max_length=250, verbose_name="2- Titre de la publication", help_text="Obligatoire")
+    authors = models.CharField(max_length=250, verbose_name="3- Auteurs (séparés par un ;)", help_text="Obligatoire")
+    year = models.IntegerField(verbose_name="4- Année de la publication", help_text="Obligatoire")
     type = models.ForeignKey(Typepub, null=True,blank=True, on_delete=models.DO_NOTHING, verbose_name="5- Type de publication")
     othertype = models.CharField(blank=True, null=True, max_length=250, verbose_name="5a- Si autre type de publication")
     peer = models.BooleanField(default=False, verbose_name="6- Peer reviewed (cocher si oui)?")
@@ -47,10 +39,15 @@ class Articles(models.Model):
     record = models.BooleanField(default=False, verbose_name="7b- Data source: Records?")
     psychotest = models.BooleanField(default=False, verbose_name="7c- Data source: Presence of psychometric tests?")
     otherdata = models.CharField(blank=True, null=True, max_length=250, verbose_name="7c1- List of psychometric tests")
-    studytype = models.ForeignKey(Typestud, on_delete=models.DO_NOTHING, verbose_name="8- Study type")
+    studytype = models.ForeignKey(Typestud, on_delete=models.DO_NOTHING, verbose_name="8- Study type", help_text="Obligatoire")
     designquanti1 = models.ForeignKey(Quanti, null=True,blank=True, related_name='quanti1', on_delete=models.DO_NOTHING, verbose_name="9a- Study design (if qualitative)")
     designquanti2 = models.ForeignKey(Quanti, null=True,blank=True, related_name='quanti2', on_delete=models.DO_NOTHING, verbose_name="9b- Study design (if qualitative)")
-    designquali = models.ForeignKey(Quali, blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name="10- Study design (if qualitative)")
+    designquali1 = models.BooleanField(default=False, verbose_name="10a- Interview")
+    designquali2 = models.BooleanField(default=False, verbose_name="10b- Focus groups")
+    designquali3 = models.BooleanField(default=False, verbose_name="10c- Observation")
+    designquali4 = models.BooleanField(default=False, verbose_name="10d- Ethnography")
+    designquali5 = models.BooleanField(default=False, verbose_name="10e- Case study")
+    designquali6 = models.BooleanField(default=False, verbose_name="10f- Other")
     otherqual = models.CharField(blank=True, null=True, max_length=100, verbose_name="10a- If other specify")
     nparticipant = models.CharField(blank=True, null=True, max_length=250, verbose_name="11- Number of participants")
     ratiomf = models.CharField(blank=True, null=True, max_length=250, verbose_name="12- Males / Females")
