@@ -72,3 +72,125 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+input, textarea {
+    width: 100%;
+    padding: 5px!important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(169,169,169)
+}
+
+.tabberlive .tabbertabhide {
+ display:none;
+}
+
+/*--------------------------------------------------
+  .tabber = before the tabber interface is set up
+  .tabberlive = after the tabber interface is set up
+  --------------------------------------------------*/
+.tabber {
+}
+
+.tabberlive {
+ margin-top:1em;
+ margin-bottom:26px;
+}
+
+/*--------------------------------------------------
+  ul.tabbernav = the tab navigation list
+  li.tabberactive = the active tab
+  --------------------------------------------------*/
+ul.tabbernav
+{
+ margin:0;
+ padding: 2px 0;
+ font: bold 0.8em Arial, sans-serif;
+}
+
+/*top-menu {background: #2C4056; color: #fff; height:1.8em; font-size: 0.em; padding: 2px 2px 0px 6px;}*/
+
+ul.tabbernav li
+{
+ list-style: none;
+ margin: 0;
+ display: inline;
+}
+
+ul.tabbernav li a
+{
+ padding: 3px 0.5em;
+ margin-left: 3px;
+ border: 1px solid #778;
+ border-bottom: none;
+ background: #759FCF;
+ text-decoration: none;
+}
+
+ul.tabbernav li a:link { color: #2c4056; }
+ul.tabbernav li a:visited { color: #2c4056; }
+
+ul.tabbernav li a:hover
+{
+ color: #fff;
+ background: #759FCF;
+ border-color: #555;
+}
+
+ul.tabbernav li.tabberactive a
+{
+ background-color: #f8f8f8;
+ border-bottom: 1px solid #fff;
+}
+
+ul.tabbernav li.tabberactive a:hover
+{
+ color: #000;
+ background: white;
+ border-bottom: 1px solid white;
+}
+
+/*--------------------------------------------------
+  .tabbertab = the tab content
+  Add style only after the tabber interface is set up (.tabberlive)
+  --------------------------------------------------*/
+.tabberlive .tabbertab {
+ padding:5px;
+ border:1px solid #aaa;
+ border-top: 1px solid #778;
+ background: #f8f8f8;
+ width :90%;
+
+
+ /* If you don't want the tab size changing whenever a tab is changed
+    you can set a fixed height */
+
+ /* height:200px; */
+
+ /* If you set a fix height set overflow to auto and you will get a
+    scrollbar when necessary */
+
+ /* overflow:auto; */
+}
+
+/* If desired, hide the heading since a heading is provided by the tab */
+.tabberlive .tabbertab h2 {
+ display:none;
+}
+.tabberlive .tabbertab h3 {
+ display:none;
+}
+
+/* Example of using an ID to set different styles for the tabs on the page */
+.tabberlive#tab1 {
+}
+.tabberlive#tab2 {
+}
+.tabberlive#tab2 .tabbertab {
+ height:200px;
+ overflow:auto;
+}

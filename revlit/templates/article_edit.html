@@ -1,0 +1,203 @@
+{% load i18n %}
+{% load static %}
+<html>
+<head>
+<title>PAVD paper evatuation / description</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/revlit/w3.css' %}">
+    <link rel="stylesheet" href="{% static '/revlit/w3-theme-black.css' %}">
+    <script type="text/javascript" src="/static/revlit/jquery.js"></script>
+    <script type="text/javascript" src="/static/revlit/tabber.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sondageM.css" />
+</head>
+<body>
+    <header class="w3-row w3-theme-l1" id="myHeader">
+         <div class="w3-threequarter w3-padding">
+            <h2>PAVD</h2>
+         </div>
+         <div class="w3-quarter w3-center">
+         </div>
+    </header>
+    <div id="container">
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="w3-orange" role="alert">
+                {{msg.message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="w3-row">
+        <form method="POST" class="Article-form">
+        <h4>Fields in bold are mandatory.</h4>
+            {% csrf_token %}
+            <table class="w3-table-all">
+             <tr class="w3-pale-yellow w3-large"><td colspan="2"><b>{{form.termine.label_tag}}</b></td><td>{{form.termine}}</td><td></td></tr>
+            <tr><td colspan="4" class="w3-dark-grey w3-large"><b>Identification</b></td></tr>
+            <tr><td>{{form.docid.label_tag}}<br />{{form.docid}}</td>
+                <td><b>{{form.year.label_tag}}</b><br />{{form.year}}</td>
+                <td>{{form.peer.label_tag}}<br />{{form.peer}}</td>
+                <td class="w3-aqua">{{form.categomh.label_tag}}<br />{{form.categomh}}</td>
+            </tr>
+            <tr><td colspan="4"><b>{{form.title.label_tag}}</b><br />{{form.title}}</td></tr>
+            <tr><td colspan="4"><b>{{form.authors.label_tag}}</b><br />{{form.authors}}</td></tr>
+            <tr><td>{{form.type.label_tag}}<br />{{form.type}}</td><td colspan="3">{{form.othertype.label_tag}}<br />{{form.othertype}}</td></tr>
+            </table>
+            <div class="tabber">
+                <div class="tabbertab"><h3>Quality of study</h3><b>Quality of study</b>
+                    <table class="w3-table-all">
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                        <tr><td>{{form.qs1.label_tag}}<br />{{form.qs1}}</td><td colspan="3">{{form.qs1t.label_tag}}<br />{{form.qs1t}}</td></tr>
+                        <tr><td>{{form.qs2.label_tag}}<br />{{form.qs2}}</td><td colspan="3">{{form.qs2t.label_tag}}<br />{{form.qs2t}}</td></tr>
+                        <tr><td>{{form.qs3.label_tag}}<br />{{form.qs3}}</td><td colspan="3">{{form.qs3t.label_tag}}<br />{{form.qs3t}}</td></tr>
+                        <tr><td>{{form.qs4.label_tag}}<br />{{form.qs4}}</td><td colspan="3">{{form.qs4t.label_tag}}<br />{{form.qs4t}}</td></tr>
+                        <tr><td>{{form.qs5.label_tag}}<br />{{form.qs5}}</td><td colspan="3">{{form.qs5t.label_tag}}<br />{{form.qs5t}}</td></tr>
+                        <tr><td>{{form.qs7.label_tag}}<br />{{form.qs7}}</td><td colspan="3">{{form.qs7t.label_tag}}<br />{{form.qs7t}}</td></tr>
+                        <tr><td>{{form.qs6.label_tag}}</td><td colspan="3">{{form.qs6}}</td></tr>
+                        <tr><td colspan="4" class="w3-aqua">{{form.eligiblesr.label_tag}} {{form.eligiblesr}}</td></tr>
+
+                    </table>
+                </div>
+                <div class="tabbertab"><h3>Data source</h3><b>Data source/Study type/Study design</b>
+                    <table class="w3-table-all">
+                        <tr><td colspan="2"><b>Data source</b></td></tr>
+                        <tr><td>{{form.meeting.label_tag}}</td><td>{{form.meeting}}</td></tr>
+                        <tr><td>{{form.record.label_tag}}</td><td>{{form.record}}</td></tr>
+                        <tr><td>{{form.psychotest.label_tag}}</td><td>{{form.psychotest}}</td></tr>
+                        <tr><td>{{form.otherdata.label_tag}}</td><td>{{form.otherdata}}</td></tr>
+                        <tr><td colspan="2"><b>Study type</b></td></tr>
+                        <tr><td>{{form.studytype.label_tag}}</td><td>{{form.studytype}}</td></tr>
+                        <tr><td colspan="2"><b>Study design If Quantitative</b></td></tr>
+                        <tr><td>{{form.designquanti1.label_tag}}</td><td>{{form.designquanti1}}</td></tr>
+                        <tr><td>{{form.designquanti2.label_tag}}</td><td>{{form.designquanti2}}</td></tr>
+                        </table>
+                    <table class="w3-table-all">
+                        <tr><td colspan="4"><b>Study design If Qualitative</b></td></tr>
+                        <tr><td>{{form.designquali1.label_tag}}</td><td>{{form.designquali1}}</td><td>{{form.designquali2.label_tag}}</td><td>{{form.designquali2}}</td></tr>
+                        <tr><td>{{form.designquali3.label_tag}}</td><td>{{form.designquali3}}</td><td>{{form.designquali4.label_tag}}</td><td>{{form.designquali4}}</td></tr>
+                        <tr><td>{{form.designquali5.label_tag}}</td><td>{{form.designquali5}}</td><td></td><td></td></tr>
+                        <tr><td>{{form.designquali6.label_tag}}</td><td>{{form.designquali6}}</td><td></td><td></td></tr>
+                        <tr><td colspan="2">{{form.otherqual.label_tag}}</td><td colspan="2">{{form.otherqual}}</td></tr>
+                    </table>
+                </div>
+                <div class="tabbertab"><h3>Sample characteristics</h3><b>Sample characteristics</b>
+                    <table class="w3-table-all">
+                        <tr><td>{{form.nparticipant.label_tag}}</td><td>{{form.nparticipant}}</td>
+                            <td>{{form.ratiomf.label_tag}}</td><td>{{form.ratiomf}}</td></tr>
+                        <tr><td>{{form.age.label_tag}}</td><td>{{form.age}}</td>
+                            <td>{{form.ethno.label_tag}}</td><td>{{form.ethno}}</td></tr>
+                        <tr><td>{{form.paysrecrut.label_tag}}</td><td>{{form.paysrecrut}}</td>
+                            <td>{{form.education.label_tag}}</td><td>{{form.religion}}</td></tr>
+                        <tr><td>{{form.employment1.label_tag}}</td><td>{{form.employment1}}</td>
+                            <td>{{form.employmentw1.label_tag}}</td><td>{{form.employmentw1}}</td></tr>
+                        <tr><td>{{form.employment2.label_tag}}</td><td>{{form.employment2}}</td>
+                            <td>{{form.employmentw2.label_tag}}</td><td>{{form.employmentw2}}</td></tr>
+                        <tr><td>{{form.employment3.label_tag}}</td><td>{{form.employment3}}</td>
+                            <td>{{form.employmentw3.label_tag}}</td><td>{{form.employmentw3}}</td></tr>
+                        <tr><td>{{form.employment4.label_tag}}</td><td>{{form.employment4}}</td>
+                            <td>{{form.employmentw4.label_tag}}</td><td>{{form.employmentw4}}</td></tr>
+                        <tr><td colspan="4">{{form.mental.label_tag}}<br />{{form.mental}}</td></tr>
+                        <tr><td>{{form.provenanceh.label_tag}}</td><td>{{form.provenanceh}}</td>
+                            <td>{{form.provenanceht.label_tag}}</td><td>{{form.provenanceht}}</td></tr>
+                        <tr><td>{{form.provenancep.label_tag}}</td><td>{{form.provenancep}}</td>
+                            <td>{{form.provenancept.label_tag}}</td><td>{{form.provenancept}}</td></tr>
+                        <tr><td>{{form.provenancec.label_tag}}</td><td>{{form.provenancec}}</td>
+                            <td>{{form.provenancect.label_tag}}</td><td>{{form.provenancect}}</td></tr>
+                        <tr><td>{{form.provenancp.label_tag}}</td><td>{{form.provenancp}}</td>
+                            <td>{{form.provenancpt.label_tag}}</td><td>{{form.provenancpt}}</td></tr>
+                        <tr><td>{{form.provenanceo.label_tag}}</td><td>{{form.provenanceo}}</td>
+                            <td>{{form.provenanceot.label_tag}}</td><td>{{form.provenanceot}}</td></tr>
+                        <tr><td>{{form.provenanceunk.label_tag}}</td><td>{{form.provenanceunk}}</td>
+                            <td>{{form.provenanceunkt.label_tag}}</td><td>{{form.provenanceunkt}}</td></tr>
+                        <tr><td>{{form.othersamplns.label_tag}}</td><td colspan="3">{{form.othersamplns}}</td></tr>
+                   </table>
+                </div>
+                <div class="tabbertab w3-pale-green"><h3>Data specific to TSVR</h3><b>Data specific to TSVR</b>
+                    <table class="w3-table-all">
+                        <tr><td>{{form.atcdtsex.label_tag}}</td><td>{{form.atcdtsex}}</td>
+                            <td>{{form.atcdtsext.label_tag}}</td><td colspan="2">{{form.atcdtsext}}</td></tr>
+                        <tr><td>{{form.atcdtviol.label_tag}}</td><td>{{form.atcdtviol}}</td>
+                            <td>{{form.atcdtviolt.label_tag}}</td><td colspan="2">{{form.atcdtviolt}}</td></tr>
+                        <tr><td>{{form.noatcdt.label_tag}}</td><td>{{form.noatcdt}}</td>
+                            <td>{{form.noatcdtt.label_tag}}</td><td colspan="2">{{form.noatcdtt}}</td></tr>
+                        <tr><td>{{form.unkatcdt.label_tag}}</td><td>{{form.unkatcdt}}</td>
+                            <td>{{form.unkatcdtt.label_tag}}</td><td colspan="2">{{form.unkatcdtt}}</td></tr>
+                        <tr><td>{{form.victgender.label_tag}}</td><td>{{form.victgender}}</td>
+                            <td>{{form.victage.label_tag}}</td><td>{{form.victage}}</td></tr>
+                        <tr><td>{{form.victrel1.label_tag}}</td><td>{{form.victrel1}}</td>
+                            <td>{{form.victrel1t.label_tag}}</td><td colspan="2">{{form.victrel1t}}</td></tr>
+                        <tr><td>{{form.victrel2.label_tag}}</td><td>{{form.victrel2}}</td>
+                            <td>{{form.victrel2t.label_tag}}</td><td colspan="2">{{form.victrel2t}}</td></tr>
+                        <tr><td>{{form.victrel3.label_tag}}</td><td>{{form.victrel3}}</td>
+                            <td>{{form.victrel3t.label_tag}}</td><td colspan="2">{{form.victrel3t}}</td></tr>
+                    </table>
+                </div>
+                <div class="tabbertab"><h3>Data analysis</h3><b>Data analysis (methods used to extract trajectories)</b>
+                    <table class="w3-table-all">
+                      <tr><td colspan="4"><b>Quantitative</b></td></tr>
+                      <tr><td>{{form.latent.label_tag}}</td><td>{{form.latent}}</td>
+                          <td>{{form.cluster.label_tag}}</td><td>{{form.cluster}}</td></tr>
+                      <tr><td>{{form.patha.label_tag}}</td><td>{{form.patha}}</td>
+                        <td>{{form.regression.label_tag}}</td><td>{{form.regression}}</td></tr>
+                      <tr><td>{{form.linear.label_tag}}</td><td>{{form.linear}}</td>
+                        <td>{{form.discriminat.label_tag}}</td><td>{{form.discriminat}}</td></tr>
+                      <tr><td>{{form.otherquantianalysis.label_tag}}</td><td>{{form.otherquantianalysis}}</td><td></td><td></td></tr>
+                        <td>{{form.otherquantitxt.label_tag}}</td><td colspan="3">{{form.otherquantitxt}}</td></tr>
+                      <tr><td colspan="4"><b>Qualitative</b></td></tr>
+                      <tr><td>{{form.thematique.label_tag}}</td><td>{{form.thematique}}</td>
+                          <td>{{form.otherqualianalysis.label_tag}}</td><td>{{form.otherqualianalysis}}</td></tr>
+                      <tr><td>{{form.otherqualitxt.label_tag}}</td><td td colspan="3">{{form.otherqualitxt}}</td></tr>
+                    </table>
+                </div>
+                <div class="tabbertab"><h3>Variables</h3><b>Variables</b>
+                    <table class="w3-table-all">
+                        <tr><td>{{form.variable1.label_tag}}<br />{{form.variable1}}</td>
+                            <td colspan="3">{{form.variable1t.label_tag}}<br />{{form.variable1t}}</td></tr>
+                        <tr><td>{{form.variable2.label_tag}}<br />{{form.variable2}}</td>
+                            <td colspan="3">{{form.variable2t.label_tag}}<br />{{form.variable2t}}</td></tr>
+                        <tr><td>{{form.variable3.label_tag}}<br />{{form.variable3}}</td>
+                            <td colspan="3">{{form.variable3t.label_tag}}<br />{{form.variable3t}}</td></tr>
+                        <tr><td>{{form.variable4.label_tag}}<br />{{form.variable4}}</td>
+                            <td colspan="3">{{form.variable4t.label_tag}}<br />{{form.variable4t}}</td></tr>
+                        <tr><td>{{form.variable5.label_tag}}<br />{{form.variable5}}</td>
+                            <td colspan="3">{{form.variable5t.label_tag}}<br />{{form.variable5t}}</td></tr>
+                        <tr><td>{{form.variable6.label_tag}}<br />{{form.variable6}}</td>
+                            <td colspan="3">{{form.variable6t.label_tag}}<br />{{form.variable6t}}</td></tr>
+                        <tr><td>{{form.variable7.label_tag}}<br />{{form.variable7}}</td>
+                            <td colspan="3">{{form.variable7t.label_tag}}<br />{{form.variable7t}}</td></tr>
+                        <tr><td>{{form.variable8.label_tag}}<br />{{form.variable8}}</td>
+                            <td colspan="3">{{form.variable8t.label_tag}}<br />{{form.variable8t}}</td></tr>
+                        <tr><td>{{form.variable9.label_tag}}</td><td colspan="3">{{form.variable9}}</td></tr>
+                    </table>
+                    </div>
+                <div class="tabbertab"><h3>Trajectories</h3><b>Trajectories</b>
+                    <table class="w3-table-all">
+                        <tr><td>{{form.trajectoire1.label_tag}}</td><td>{{form.trajectoire1}}</td></tr>
+                        <tr><td>{{form.trajectoire2.label_tag}}</td><td>{{form.trajectoire2}}</td></tr>
+                        <tr><td>{{form.trajectoire3.label_tag}}</td><td>{{form.trajectoire3}}</td></tr>
+                        <tr><td>{{form.trajectoire4.label_tag}}</td><td>{{form.trajectoire4}}</td></tr>
+                        <tr><td>{{form.trajectoire5.label_tag}}</td><td>{{form.trajectoire5}}</td></tr>
+                        <tr><td>{{form.trajectoire6.label_tag}}</td><td>{{form.trajectoire6}}</td></tr>
+                        <tr><td>{{form.trajectoire7.label_tag}}</td><td>{{form.trajectoire7}}</td></tr>
+                    </table>
+                    </div>
+                <div class="tabbertab w3-pale-blue"><h3>Data specific to V.R.</h3><b>Data specific to VR</b>
+                    <table class="w3-table-all">
+                        <tr><td>{{form.smtvt1.label_tag}}</td><td>{{form.smtvt1}}</td></tr>
+                        <tr><td>{{form.smtvt2.label_tag}}</td><td>{{form.smtvt2}}</td></tr>
+                        <tr><td>{{form.smtvt3.label_tag}}</td><td>{{form.smtvt3}}</td></tr>
+                        <tr><td>{{form.smtvt4.label_tag}}</td><td>{{form.smtvt4}}</td></tr>
+                        <tr><td>{{form.smtvt5.label_tag}}</td><td>{{form.smtvt5}}</td></tr>
+                        <tr><td>{{form.smtvt6.label_tag}}</td><td>{{form.smtvt6}}</td></tr>
+                        <tr><td>{{form.smtvt7.label_tag}}</td><td>{{form.smtvt7}}</td></tr>
+                    </table>
+               </div>
+            </div>
+            <button type="submit" class="w3-button w3-amber">Save</button>
+            <button type="submit" class="w3-button w3-khaki " name="Savesurplace">Save and continue</button>
+         </form>
+    </div>
+    </body>
+</html>
+
