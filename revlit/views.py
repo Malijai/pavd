@@ -14,7 +14,6 @@ def article_new(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.RA = request.user
-
             article.save()
             messages.success(request, "L'article a été ajouté à la liste")
             return redirect('article_list')

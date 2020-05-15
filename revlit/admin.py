@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Typepub, Typestud, Articles
+from .models import Typepub, Typestud, Articles, Categomh
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -77,4 +77,6 @@ def save_model(self, request, obj, form, change):
 admin.site.register(Articles, ArticleAdmin)
 admin.site.register(Typepub)
 admin.site.register(Typestud)
+admin.site.register(Categomh)
+
 
