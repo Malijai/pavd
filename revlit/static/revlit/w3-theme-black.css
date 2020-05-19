@@ -194,3 +194,7 @@ ul.tabbernav li.tabberactive a:hover
  height:200px;
  overflow:auto;
 }
+input.checkmod {
+    width : 15;
+    height : 15;
+}

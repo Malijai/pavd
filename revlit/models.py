@@ -172,12 +172,15 @@ class Articles(models.Model):
     smtvt6 = models.TextField(blank=True, null=True, verbose_name="Shift markers towards violence of trajectory 6")
     smtvt7 = models.TextField(blank=True, null=True, verbose_name="Shift markers towards violence of trajectory 7")
     limitations = models.TextField(blank=True, null=True, verbose_name="Limitations")
-    sousetude = models.BooleanField(default=False, verbose_name="S'agit-il d'une sous étude ou d'un sous échantillon?")
-    etudemere = models.CharField(blank=True, null=True, max_length=250, verbose_name="Si oui référence de l'étude originale (et ID si connu)")
+    sousetude = models.BooleanField(default=False, verbose_name="1. Is the data a subsample?")
+    etudemere = models.CharField(blank=True, null=True, max_length=250, verbose_name="1a. Original study reference number")
+    inclussr = models.BooleanField(default=False, verbose_name=" is the paper included in the S. R. ?")
     RA = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     termine = models.BooleanField(default=False, verbose_name="Check if the codification of the paper is finished")
+    tsvrrelevant = models.TextField(blank=True, null=True, verbose_name="TSVR Any other relevant info")
+    trajrelevant = models.TextField(blank=True, null=True, verbose_name="Trajectories Any other relevant info")
 
     class Meta:
         ordering = ['authors', 'title', 'year']
