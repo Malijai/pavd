@@ -30,7 +30,7 @@
     </div>
     <div class="w3-row">
         <form method="POST" class="Article-form">
-        <h4>Fields in bold are mandatory.</h4>
+        <h4>Fields in bold are mandatory. Enregistrez fréquemment</h4>
             {% csrf_token %}
             <table class="w3-table-all">
              <tr class="w3-pale-yellow w3-large"><td colspan="2"><b>{{form.termine.label_tag}}</b></td><td>{{form.termine}}</td><td></td></tr>
@@ -88,7 +88,7 @@
                         <tr><td>{{form.age.label_tag}}</td><td>{{form.age}}</td>
                             <td>{{form.ethno.label_tag}}</td><td>{{form.ethno}}</td></tr>
                         <tr><td>{{form.paysrecrut.label_tag}}</td><td>{{form.paysrecrut}}</td>
-                            <td>{{form.education.label_tag}}</td><td>{{form.religion}}</td></tr>
+                            <td>{{form.education.label_tag}}</td><td>{{form.education}}</td></tr>
                         <tr><td>{{form.employment1.label_tag}}</td><td>{{form.employment1}}</td>
                             <td>{{form.employmentw1.label_tag}}</td><td>{{form.employmentw1}}</td></tr>
                         <tr><td>{{form.employment2.label_tag}}</td><td>{{form.employment2}}</td>
@@ -97,6 +97,7 @@
                             <td>{{form.employmentw3.label_tag}}</td><td>{{form.employmentw3}}</td></tr>
                         <tr><td>{{form.employment4.label_tag}}</td><td>{{form.employment4}}</td>
                             <td>{{form.employmentw4.label_tag}}</td><td>{{form.employmentw4}}</td></tr>
+                        <tr><td colspan="4">{{form.religion.label_tag}}<br />{{form.religion}}</td></tr>
                         <tr><td colspan="4">{{form.mental.label_tag}}<br />{{form.mental}}</td></tr>
                         <tr><td>{{form.provenanceh.label_tag}}</td><td>{{form.provenanceh}}</td>
                             <td>{{form.provenanceht.label_tag}}</td><td>{{form.provenanceht}}</td></tr>
@@ -104,8 +105,8 @@
                             <td>{{form.provenancept.label_tag}}</td><td>{{form.provenancept}}</td></tr>
                         <tr><td>{{form.provenancec.label_tag}}</td><td>{{form.provenancec}}</td>
                             <td>{{form.provenancect.label_tag}}</td><td>{{form.provenancect}}</td></tr>
-                        <tr><td>{{form.provenancp.label_tag}}</td><td>{{form.provenancp}}</td>
-                            <td>{{form.provenancpt.label_tag}}</td><td>{{form.provenancpt}}</td></tr>
+                        <tr><td>{{form.provenancecp.label_tag}}</td><td>{{form.provenancecp}}</td>
+                            <td>{{form.provenancecpt.label_tag}}</td><td>{{form.provenancecpt}}</td></tr>
                         <tr><td>{{form.provenanceo.label_tag}}</td><td>{{form.provenanceo}}</td>
                             <td>{{form.provenanceot.label_tag}}</td><td>{{form.provenanceot}}</td></tr>
                         <tr><td>{{form.provenanceunk.label_tag}}</td><td>{{form.provenanceunk}}</td>
