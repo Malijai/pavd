@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Typepub, Typestud, Articles, Categomh
+from .models import Typepub, Typestud, Articles, Volet
 
 
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Identification', {'fields': ['docid', 'categomh', 'title', 'authors', 'peer', ('year', 'type', 'othertype')]}),
+        ('Identification', {'fields': ['docid',  'title', 'authors', 'peer', ('year', 'type', 'othertype')]}),
         ('Quality of study', {'fields': [('qs1', 'qs1t'), ('qs2', 'qs2t'), ('qs3', 'qs3t'),
                                          ('qs4', 'qs4t'), ('qs5', 'qs5t'), ('qs7', 'qs7t'),'qs6']}),
         ('Is the paper eligible for the S.R.?', {'fields': ['eligiblesr']}),
@@ -77,6 +77,6 @@ def save_model(self, request, obj, form, change):
 admin.site.register(Articles, ArticleAdmin)
 admin.site.register(Typepub)
 admin.site.register(Typestud)
-admin.site.register(Categomh)
+admin.site.register(Volet)
 
 

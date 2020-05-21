@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Categomh(models.Model):
+class Volet(models.Model):
     reponse_valeur = models.CharField(max_length=200)
     reponse = models.CharField(max_length=200, )
 
@@ -49,7 +49,15 @@ class Articles(models.Model):
         (Pro, 'Prospective'),
     ]
     docid = models.IntegerField(blank=True, null=True, verbose_name="1- Document ID",)
-    categomh = models.ForeignKey(Categomh, null=True,blank=True, on_delete=models.DO_NOTHING, verbose_name="7- Categories MH", help_text="Obligatoire")
+    volet = models.ForeignKey(Volet, null=True,blank=True, on_delete=models.DO_NOTHING, verbose_name="1a- Volet")
+    categomh1 = models.BooleanField(default=False, verbose_name="7a- Revue de littérature?")
+    categomh2 = models.BooleanField(default=False, verbose_name="7b- Facteurs extra-individuels?")
+    categomh3 = models.BooleanField(default=False, verbose_name="7c- Outils?")
+    categomh4 = models.BooleanField(default=False, verbose_name="7d- Évaluation programmes et interventions?")
+    categomh5 = models.BooleanField(default=False, verbose_name="7e- Tous les facteurs?")
+    categomh6 = models.BooleanField(default=False, verbose_name="7f- Violent/non-violent?")
+    categomh7 = models.BooleanField(default=False, verbose_name="7g- Desistance?")
+    categomh8 = models.BooleanField(default=False, verbose_name="7h- Facteurs distaux et proximaux?")
     title = models.CharField(max_length=250, verbose_name="3- Title", help_text="Obligatoire")
     authors = models.CharField(max_length=250, verbose_name="4- Authors (follow APA format)", help_text="Obligatoire")
     year = models.IntegerField(verbose_name="2- Year", help_text="Obligatoire")

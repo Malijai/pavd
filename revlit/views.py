@@ -45,7 +45,10 @@ def article_edit(request, pk):
 
 @login_required(login_url=settings.LOGIN_URI)
 def article_list(request):
-    articles_tous = Articles.objects.filter(RA=request.user).order_by('authors', 'title', 'year')
+    if request.user.groups.filter(name='SuperU').exists():
+        articles_tous = Articles.objects.all().order_by('authors', 'title', 'year')
+    else:
+        articles_tous = Articles.objects.filter(RA=request.user).order_by('authors', 'title', 'year')
     paginator = Paginator(articles_tous, 50)
     page = request.GET.get('page')
     try:

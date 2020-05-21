@@ -56,12 +56,13 @@
     <div class="w3-container w3-threequarter">
 
     <table class="w3-table-all">
-        <tr><td>ID</td><td>Title</td><td>Year</td><td>Finished?</td><td>Action</td></tr>
+        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</td><td>Finished?</td><td>Action</td></tr>
         {% for article in articles %}
         <tr>
             <td>{{ article.docid }}</td>
             <td>{{ article.title }}</td>
             <td>{{ article.year }}</td>
+            <td>{{ article.RA }}</td>
             <td>{{ article.termine }}</td>
             <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a></td>
         </tr>
