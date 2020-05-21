@@ -125,13 +125,13 @@ ul.tabbernav li a
 {
  padding: 3px 0.5em;
  margin-left: 3px;
- border: 1px solid #778;
+ border: 1px solid #778877;
  border-bottom: none;
- background: #759FCF;
+ background: #308428;
  text-decoration: none;
 }
 
-ul.tabbernav li a:link { color: #2c4056; }
+ul.tabbernav li a:link { color: #FFF; }
 ul.tabbernav li a:visited { color: #2c4056; }
 
 ul.tabbernav li a:hover
@@ -143,8 +143,9 @@ ul.tabbernav li a:hover
 
 ul.tabbernav li.tabberactive a
 {
- background-color: #f8f8f8;
+ background-color: #E0F3E2;
  border-bottom: 1px solid #fff;
+ color: #000;
 }
 
 ul.tabbernav li.tabberactive a:hover
@@ -160,10 +161,10 @@ ul.tabbernav li.tabberactive a:hover
   --------------------------------------------------*/
 .tabberlive .tabbertab {
  padding:5px;
- border:1px solid #aaa;
- border-top: 1px solid #778;
+ border:1px solid #778877;
+ border-top: 1px solid #778877;
  background: #f8f8f8;
- width :90%;
+ width :80%;
 
 
  /* If you don't want the tab size changing whenever a tab is changed
@@ -188,8 +189,10 @@ ul.tabbernav li.tabberactive a:hover
 /* Example of using an ID to set different styles for the tabs on the page */
 .tabberlive#tab1 {
 }
+
 .tabberlive#tab2 {
 }
+
 .tabberlive#tab2 .tabbertab {
  height:200px;
  overflow:auto;

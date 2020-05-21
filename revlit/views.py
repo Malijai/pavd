@@ -27,7 +27,6 @@ def article_new(request):
 @login_required(login_url=settings.LOGIN_URI)
 def article_edit(request, pk):
     article = Articles.objects.get(pk=pk)
-
     if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
@@ -46,8 +45,8 @@ def article_edit(request, pk):
 
 @login_required(login_url=settings.LOGIN_URI)
 def article_list(request):
-    articles_tous = Articles.objects.all().order_by('authors', 'title', 'year')
-    paginator = Paginator(articles_tous, 100)
+    articles_tous = Articles.objects.filter(RA=request.user).order_by('authors', 'title', 'year')
+    paginator = Paginator(articles_tous, 50)
     page = request.GET.get('page')
     try:
         articles = paginator.page(page)

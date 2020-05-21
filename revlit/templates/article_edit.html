@@ -29,20 +29,21 @@
         {% endif %}
     </div>
     <div class="w3-row">
-        <form method="POST" class="Article-form">
-        <h4>Fields in bold are mandatory. Enregistrez fréquemment</h4>
+        <div class="w3-container w3-twothird">
+          <form method="POST" class="Article-form">
+            <h4>Fields in bold are mandatory. Enregistrez fréquemment</h4>
             {% csrf_token %}
             <table class="w3-table-all">
-             <tr class="w3-pale-yellow w3-large"><td colspan="2"><b>{{form.termine.label_tag}}</b></td><td>{{form.termine}}</td><td></td></tr>
-            <tr><td colspan="4" class="w3-dark-grey w3-large"><b>Identification</b></td></tr>
-            <tr><td>{{form.docid.label_tag}}<br />{{form.docid}}</td>
-                <td><b>{{form.year.label_tag}}</b><br />{{form.year}}</td>
-                <td>{{form.peer.label_tag}}<br />{{form.peer}}</td>
-                <td class="w3-aqua">{{form.categomh.label_tag}}<br />{{form.categomh}}</td>
-            </tr>
-            <tr><td colspan="4"><b>{{form.title.label_tag}}</b><br />{{form.title}}</td></tr>
-            <tr><td colspan="4"><b>{{form.authors.label_tag}}</b><br />{{form.authors}}</td></tr>
-            <tr><td>{{form.type.label_tag}}<br />{{form.type}}</td><td colspan="3">{{form.othertype.label_tag}}<br />{{form.othertype}}</td></tr>
+                <tr class="w3-pale-yellow w3-large"><td colspan="2"><b>{{form.termine.label_tag}}</b></td><td>{{form.termine}}</td><td></td></tr>
+                <tr><td colspan="4" class="w3-dark-grey w3-large"><b>Identification</b></td></tr>
+                <tr><td>{{form.docid.label_tag}}<br />{{form.docid}}</td>
+                    <td><b>{{form.year.label_tag}}</b><br />{{form.year}}</td>
+                    <td>{{form.peer.label_tag}}<br />{{form.peer}}</td>
+                    <td class="w3-aqua">{{form.categomh.label_tag}}<br />{{form.categomh}}</td>
+                </tr>
+                <tr><td colspan="4"><b>{{form.title.label_tag}}</b><br />{{form.title}}</td></tr>
+                <tr><td colspan="4"><b>{{form.authors.label_tag}}</b><br />{{form.authors}}</td></tr>
+                <tr><td>{{form.type.label_tag}}<br />{{form.type}}</td><td colspan="3">{{form.othertype.label_tag}}<br />{{form.othertype}}</td></tr>
             </table>
             <div class="tabber">
                 <div class="tabbertab"><h3>Quality of study</h3><b>Quality of study</b>
@@ -196,18 +197,22 @@
                         <tr><td>{{form.smtvt7.label_tag}}</td><td>{{form.smtvt7}}</td></tr>
                     </table>
                     </div>
-               <div class="tabbertab w3-pale-blue"><h3>Autres informations</h3><b>Autres informations</b>
+                <div class="tabbertab w3-pale-blue"><h3>Autres informations</h3><b>Autres informations</b>
                     <table class="w3-table-all">
                         <tr><td>{{form.sousetude.label_tag}}</td><td>{{form.sousetude}}</td></tr>
                         <tr><td>{{form.etudemere.label_tag}}</td><td>{{form.etudemere}}</td></tr>
                         <tr><td class="w3-aqua">{{form.inclussr.label_tag}}</td><td class="w3-aqua">{{form.inclussr}}</td></tr>
-                    </table>
-               </div>
+                     </table>
+                </div>
             </div>
             <button type="submit" class="w3-button w3-amber">Save</button>
             <button type="submit" class="w3-button w3-khaki " name="Savesurplace">Save and continue</button>
-         </form>
+          </form>
+        </div>
     </div>
     </body>
 </html>
+
+
+
 

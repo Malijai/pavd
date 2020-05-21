@@ -11,7 +11,7 @@
 <body>
     <header class="w3-row w3-theme-l1" id="myHeader">
          <div class="w3-threequarter w3-padding">
-            <h2>PAVD : Liste des articles codés/ en cours de codification</h2>
+            <h2>PAVD : Liste des articles codés/ en cours de codification par {{request.user}}</h2>
          </div>
          <div class="w3-quarter w3-center">
          </div>
@@ -27,7 +27,7 @@
     </div>
 <div class="w3-row w3-theme-d3">
     <div class="w3-quarter">
-        <a class="w3-btn w3-dark-grey w3-hover-light-grey" href="{% url 'article_new' %}">New Reference</a>
+        <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_new' %}"><b>New Reference</b></a>
     </div>
     <div class="w3-threequarter">
         <div class="pagination">
@@ -53,7 +53,8 @@
         </div>
         </div>
     </div>
-</div>
+    <div class="w3-container w3-threequarter">
+
     <table class="w3-table-all">
         <tr><td>ID</td><td>Title</td><td>Year</td><td>Finished?</td><td>Action</td></tr>
         {% for article in articles %}
@@ -65,6 +66,7 @@
             <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a></td>
         </tr>
         {% endfor %}
-</table>
-    </body>
+    </table>
+    </div>
+</body>
 </html>
