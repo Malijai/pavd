@@ -169,6 +169,7 @@ def bilan_irr(request, volet):
                                                  'lignesTsvr8': toutesleslignesTsvr,
                                                  'lignesPath10': toutesleslignesPath,
                                                  'lignesVar9': toutesleslignesVar,
+                                                 'volet':volet
                                                  })
 
 
@@ -185,12 +186,12 @@ def traduitbool(val):
     return valbool
 
 
-def cherche_article(request, doc):
-    article_ras = Articles.objects.values('RA').filter(docid=doc).order_by('RA')
+def cherche_article(request, doc, volet):
+    article_ras = Articles.objects.values('RA').filter(docid=doc, volet=volet).order_by('RA')
     comparaison = {}
     liste_ras = []
     for ra in article_ras:
-        articles = Articles.objects.filter(docid=doc, RA_id=ra['RA'])
+        articles = Articles.objects.filter(docid=doc, RA_id=ra['RA'], volet=volet)
         fields = articles.model._meta.fields
         liste_ras.append(ra['RA'])
         for field in fields:
@@ -217,4 +218,5 @@ def cherche_article(request, doc):
                                                  'articles': articles,
                                                  'lignes': comparaison,
                                                  'users': users,
+                                                 'volet': volet,
                                                  })
