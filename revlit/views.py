@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
@@ -188,7 +190,7 @@ def traduitbool(val):
 
 def cherche_article(request, doc, volet):
     article_ras = Articles.objects.values('RA').filter(docid=doc, volet=volet).order_by('RA')
-    comparaison = {}
+    comparaison = OrderedDict()
     liste_ras = []
     for ra in article_ras:
         articles = Articles.objects.filter(docid=doc, RA_id=ra['RA'], volet=volet)
