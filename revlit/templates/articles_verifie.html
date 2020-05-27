@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load static %}
+
+<html>
+<head>
+<title>PAVD paper evatuation / description IRR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/revlit/w3.css' %}">
+    <link rel="stylesheet" href="{% static '/revlit/w3-theme-black.css' %}">
+    <script type="text/javascript" src="/static/revlit/jquery.js"></script>
+    <script type="text/javascript" src="/static/revlit/tabber.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sondageM.css" />
+</head>
+<body>
+    <header class="w3-row w3-theme-l1" id="myHeader">
+         <div class="w3-threequarter w3-padding">
+            <h2>PAVD : verification IRR</h2>
+         </div>
+         <div class="w3-quarter w3-center">
+         </div>
+    </header>
+    <div id="container">
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="w3-orange" role="alert">
+                    {{msg.message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+<div class="w3-container w3-threequarter">
+{% for article in articles %}
+    <h3>Docid: {{article.docid}}; Annee: {{article.year}}</h3>
+    <h4>Titre: {{article.title}}</h4>
+        {% endfor %}
+
+<table class="w3-table-all">
+    <tr><td>Question</td>
+    {% for ra in article_ra %}
+        {% for user in users %}
+            {% if ra.RA == user.id %}
+            <td>{{user.username}}</td>
+            {%endif %}
+        {% endfor %}
+    {%endfor %}
+    </tr>
+    {% for ligne, valeurs in lignes.items %}
+    <tr>
+        <td>{{ligne}}</td>
+        {% for valeur in valeurs %}
+            <td>{{ valeur.1|default_if_none:"" }}</td>
+        {%endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+</body>
+</html>

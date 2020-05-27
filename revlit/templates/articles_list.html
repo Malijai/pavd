@@ -11,7 +11,7 @@
 <body>
     <header class="w3-row w3-theme-l1" id="myHeader">
          <div class="w3-threequarter w3-padding">
-            <h2>PAVD : Liste des articles codés/ en cours de codification par {{request.user}}</h2>
+            <h2>PAVD : Liste des articles codés/ en cours de codification. {{request.user}}</h2>
          </div>
          <div class="w3-quarter w3-center">
          </div>
@@ -30,6 +30,15 @@
         <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_new' %}"><b>New Reference</b></a>
     </div>
     <div class="w3-threequarter">
+        {% if superu == 1 %}
+        <b>IRR:</b>
+        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 1 %}"><b>Santé mentale</b></a>
+        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 2 %}"><b>Radicalisation</b></a>
+        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 3 %}"><b>Violence Sexuelle</b></a>
+        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 4 %}"><b>Violence Conjugale</b></a>
+        {% endif %}
+    </div></div>
+<div class="w3-row w3-theme-d3">
         <div class="pagination">
              {% if articles.has_other_pages %}
                 {% if articles.has_previous %}
@@ -51,9 +60,8 @@
                 {% endif %}
             {% endif %}
         </div>
-        </div>
     </div>
-    <div class="w3-container w3-threequarter">
+    <div class="w3-container">
 
     <table class="w3-table-all">
         <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</td><td>Finished?</td><td>Action</td></tr>

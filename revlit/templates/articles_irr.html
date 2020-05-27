@@ -1,0 +1,145 @@
+{% load i18n %}
+{% load static %}
+<html>
+<head>
+<title>PAVD paper evatuation / description</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/revlit/w3.css' %}">
+    <link rel="stylesheet" href="{% static '/revlit/w3-theme-black.css' %}">
+    <script type="text/javascript" src="/static/revlit/jquery.js"></script>
+    <script type="text/javascript" src="/static/revlit/tabber.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sondageM.css" />
+</head>
+<body>
+    <header class="w3-row w3-theme-l1" id="myHeader">
+         <div class="w3-threequarter w3-padding">
+            <h2>PAVD : IRR </h2>
+         </div>
+         <div class="w3-quarter w3-center">
+         </div>
+    </header>
+    <div id="container">
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="w3-orange" role="alert">
+                    {{msg.message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+<div class="w3-container w3-threequarter">
+    <h4>Cliquer sur le lien du Docid pour voir le détail des codifications</h4>
+    <p>Nb de code correspond au nombre de personnes qui ont codé un article. Si ce nombre est à 2 et qu'une réponse est
+        à 1 ça signifie que un des deux cotateur à codé True et l'autre False, si la réponse est 0 ça signifie que les
+        deux ont codé False, si c'est 2 ça signifie que les deux ont codé True</p>
+    <p>Donc, pour qu'il y ait un accord, les nombres affichés doivent être soit 0 soit égaux au nombre de cotateurs</p>
+<div class="tabber">
+    <div class="tabbertab"><h3>Data specific to MH</h3><b>Data specific to MH</b>
+        <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>7a</td><td>7b</td><td>7c</td><td>7d</td>
+        <td>7e</td><td>7f</td><td>7g</td><td>7h</td>
+        </tr>
+        {% for ligne in lignesMH9 %}
+        <tr>
+        <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td><td>{{ligne.3}}</td><td>{{ligne.4}}</td>
+        <td>{{ligne.5}}</td><td>{{ligne.6}}</td><td>{{ligne.7}}</td><td>{{ligne.8}}</td><td>{{ligne.9}}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+<div class="tabbertab"><h3>Quality of study</h3><b>Quality of study</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>6</td><td>QS1</td><td>QS2</td><td>QS3</td><td>QS42</td>
+        <td>QS5</td><td>QS7</td>
+        </tr>
+        {% for ligne in lignesQ8 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td>
+            <td>{{ligne.3}}</td><td>{{ligne.4}}</td><td>{{ligne.5}}</td>
+            <td>{{ligne.6}}</td><td>{{ligne.7}}</td><td>{{ligne.8}}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+        <div class="tabbertab"><h3>Data source</h3><b>Data source</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>9a</td><td>9b</td><td>9c</td><td>12a</td>
+        <td>12b</td><td>12c</td><td>12d</td><td>12e</td><td>12f</td><td>10</td>
+        </tr>
+        {% for ligne in lignesMetho11 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td><td>{{ligne.3}}</td><td>{{ligne.4}}</td>
+            <td>{{ligne.5}}</td><td>{{ligne.6}}</td><td>{{ligne.7}}</td><td>{{ligne.8}}</td><td>{{ligne.9}}</td>
+            <td>{{ligne.10}}</td><td>{{ligne.11}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+<div class="tabbertab"><h3>Sample characteristics</h3><b>Sample characteristics</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>25</td><td>26b</td>
+            <td>27</td><td>28</td><td>29</td>
+            <td>30</td>
+        </tr>
+        {% for ligne in lignesSample7 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td>
+            <td>{{ligne.3}}</td><td>{{ligne.4}}</td><td>{{ligne.5}}</td>
+            <td>{{ligne.6}}</td><td>{{ligne.7}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+    </div>
+<div class="tabbertab w3-pale-green"><h3>Data specific to TSVR</h3><b>Data specific to TSVR</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>32</td><td>33</td>
+            <td>34</td><td>35</td><td>38</td>
+            <td>39</td><td>40</td>
+        </tr>
+        {% for ligne in lignesTsvr8 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td>
+            <td>{{ligne.3}}</td><td>{{ligne.4}}</td><td>{{ligne.5}}</td>
+            <td>{{ligne.6}}</td><td>{{ligne.7}}</td><td>{{ligne.8}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+    </div>
+<div class="tabbertab"><h3>Data analysis</h3><b>Data analysis (methods used to extract trajectories)</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>41</td><td>42</td><td>43</td><td>44</td><td>45</td>
+            <td>46</td><td>47</td><td>48</td><td>49</td>
+        </tr>
+        {% for ligne in lignesPath10 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td><td>{{ligne.3}}</td>
+            <td>{{ligne.4}}</td><td>{{ligne.5}}</td><td>{{ligne.6}}</td><td>{{ligne.7}}</td>
+            <td>{{ligne.8}}</td><td>{{ligne.9}}</td><td>{{ligne.10}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+    </div>
+ <div class="tabbertab"><h3>Variables</h3><b>Variables</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>50</td><td>51</td><td>52</td><td>53</td>
+        <td>54</td><td>55</td><td>56</td><td>57</td>
+        </tr>
+        {% for ligne in lignesVar9 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 %}">{{ligne.0}}</a></td><td>{{ligne.1}}</td><td>{{ligne.2}}</td><td>{{ligne.3}}</td><td>{{ligne.4}}</td>
+            <td>{{ligne.5}}</td><td>{{ligne.6}}</td><td>{{ligne.7}}</td><td>{{ligne.8}}</td><td>{{ligne.9}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+    </div>
+</div>
+</body>
+</html>
