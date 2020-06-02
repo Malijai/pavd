@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import forms
-from .models import Articles
+from .models import Articles, Volet
+from django.forms import inlineformset_factory
 
 
 class ArticleForm(forms.ModelForm):
@@ -45,9 +46,16 @@ class ArticleForm(forms.ModelForm):
             'noatcdt', 'noatcdtt','unkatcdt', 'unkatcdtt','victgender', 'victage', 'victrel1', 'victrel1t',
             'victrel2', 'victrel2t','victrel3', 'victrel3t','latent', 'cluster', 'patha','regression', 'linear', 'discriminat',
             'otherquantianalysis', 'otherquantitxt','thematique', 'otherqualianalysis', 'otherqualitxt','variable1', 'variable1t','variable2', 'variable2t',
-            'variable3', 'variable3t','variable4', 'variable4t','variable5','variable5t','variable6', 'variable6t',
+            'variable3', 'variable3t','variable10t','variable4', 'variable4t','variable5','variable5t','variable6', 'variable6t',
             'variable7', 'variable7t','variable8', 'variable8t','variable9','trajectoire1', 'trajectoire2', 'trajectoire3', 'trajectoire4',
-            'trajectoire5', 'trajectoire6', 'trajectoire7','smtvt1', 'smtvt2', 'smtvt3', 'smtvt4', 'smtvt5', 'smtvt6', 'smtvt7','sousetude', 'etudemere','inclussr','tsvrrelevant','trajrelevant',
+            'trajectoire5', 'trajectoire6', 'trajectoire7', 'trajectoire8', 'trajectoire9','smtvt1', 'smtvt2', 'smtvt3', 'smtvt4', 'smtvt5', 'smtvt6', 'smtvt7','sousetude', 'etudemere','inclussr','tsvrrelevant','trajrelevant',
             'categomh1', 'categomh2', 'categomh3', 'categomh4', 'categomh5', 'categomh6', 'categomh7', 'categomh8']
         exclude = ('RA', 'created_at', 'updated_at')
+
+
+class RechercheForm(forms.Form):
+    volets = Volet.objects.all()
+    recherchetitre = forms.CharField(label='Recherche dans le titre', max_length=100, empty_value='', required=False)
+    rechercheauteur = forms.CharField(label='Recherche dans les auteurs', max_length=100, empty_value='', required=False)
+    volet = forms.ModelChoiceField(volets,label='volet')
 

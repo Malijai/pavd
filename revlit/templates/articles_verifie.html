@@ -28,8 +28,15 @@
             {% endfor %}
         {% endif %}
     </div>
+    <div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_list' %}"><b>Retour à la liste</b></a>
+    </div>
+    <div class="w3-threequarter">
+    </div></div>
+<div class="w3-container">
 
-<div class="w3-container w3-threequarter">
+< class="w3-container w3-threequarter">
 {% for article in articles %}
     <h3>Docid: {{article.docid}}; Annee: {{article.year}}</h3>
     <h4>Titre: {{article.title}}</h4>
@@ -54,7 +61,20 @@
     </tr>
     {% endfor %}
 </table>
+<br />
+</div>
+   <div>-<br /></div>
+    </div>
+        <div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_list' %}"><b>Retour à la liste</b></a>
+    </div>
+    <div class="w3-threequarter">
+    </div></div>
+
+    <div class="footer">
 
 </div>
+
 </body>
 </html>

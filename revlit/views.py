@@ -1,9 +1,8 @@
 from collections import OrderedDict
-
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
-from .forms import ArticleForm
+from .forms import ArticleForm, RechercheForm
 from django.contrib.auth.decorators import login_required
 from .models import Articles, Volet, User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -70,7 +69,6 @@ def article_list(request):
 
 @login_required(login_url=settings.LOGIN_URI)
 def bilan_irr(request, volet):
-
     toutesleslignesMH = []
     toutesleslignesQ = []
     toutesleslignesMetho = []
@@ -105,7 +103,7 @@ def bilan_irr(request, volet):
         toutesleslignesMH.append(ligneMH)
 
         irrQ = Articles.objects.values('docid').filter(Q(docid=a_irr[0])).order_by('docid') \
-        .annotate(qs1=Sum('qs1'), qs2=Sum('qs2'), qs3=Sum('qs3'),
+            .annotate(qs1=Sum('qs1'), qs2=Sum('qs2'), qs3=Sum('qs3'),
                   qs4=Sum('qs4'), qs5=Sum('qs5'), qs7=Sum('qs7'),
                   peer=Sum('peer'))
         ligneQ.append(a_irr[0])
@@ -222,3 +220,29 @@ def cherche_article(request, doc, volet):
                                                  'users': users,
                                                  'volet': volet,
                                                  })
+
+
+def recherche(request):
+    form_rech = RechercheForm
+    if request.method == 'POST':
+        form = form_rech(data=request.POST)
+        if form.is_valid():
+            volet = request.POST.get('volet', '')
+            titre = request.POST.get('recherchetitre', '')
+            auteur = request.POST.get('rechercheauteur', '')
+            requete =Q(volet__id=volet)
+            if titre:
+                requete = Q(title__icontains=titre) & requete
+            if auteur:
+                requete = Q(authors__icontains=auteur) & requete
+            articles = Articles.objects.filter(requete)
+            if articles:
+                return render(request, 'articles_list.html', {'articles': articles, 'superu': 1})
+            else:
+                message = ("Cet auteur - {} - ou cette expression - {} - n'ont pas été trouvés dans les articles rentrés du volet"
+                           " - {} -").format(auteur,titre, volet)
+                return render(request, 'Recherche.html', {'form': form, 'message': message})
+    else:
+        form_rech = RechercheForm()
+
+    return render(request, 'Recherche.html', {'form': form_rech})

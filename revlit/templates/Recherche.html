@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load static %}
+<html>
+<head>
+<title>PAVD paper evatuation / description</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/revlit/w3.css' %}">
+    <link rel="stylesheet" href="{% static '/revlit/w3-theme-black.css' %}">
+    <script type="text/javascript" src="/static/revlit/jquery.js"></script>
+    <script type="text/javascript" src="/static/revlit/tabber.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sondageM.css" />
+</head>
+<body>
+    <header class="w3-row w3-theme-l1" id="myHeader">
+         <div class="w3-threequarter w3-padding">
+            <h2>PAVD Recherche</h2>
+         </div>
+         <div class="w3-quarter w3-center">
+         </div>
+    </header>
+    <div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_list' %}"><b>Retour à la liste</b></a>
+    </div>
+    <div class="w3-threequarter">
+    </div></div>
+    <div id="container">
+        {% if message %}
+                <div class="w3-orange" role="alert">
+                {{message}}
+                </div>
+        {% endif %}
+    </div>
+    <div class="w3-row">
+        <div class="w3-container w3-twothird">
+            <h4>Recherche dans le titre ET dans les auteurs ET dans le volet. Laisser le champ vide si non nécessaire à la recherche</h4>
+          <form method="POST" class="Recherche-form">
+            {% csrf_token %}
+        <table class="w3-table-all">
+        {{ form.as_table }}
+        </table>
+             <button type="submit" class="w3-button w3-amber">Rechercher</button>
+       </form>
+        </div>
+    </div>
+    </body>
+</html>
+
+
+
+

@@ -36,6 +36,7 @@
         <a class="w3-btn w3-white" href="{% url 'bilan_irr' 2 %}"><b>Radicalisation</b></a>
         <a class="w3-btn w3-white" href="{% url 'bilan_irr' 3 %}"><b>Violence Sexuelle</b></a>
         <a class="w3-btn w3-white" href="{% url 'bilan_irr' 4 %}"><b>Violence Conjugale</b></a>
+        <a class="w3-btn w3-white" href="{% url 'recherche' %}"><b>Recherche</b></a>
         {% endif %}
     </div></div>
 <div class="w3-row w3-theme-d3">
@@ -64,18 +65,50 @@
     <div class="w3-container">
 
     <table class="w3-table-all">
-        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</td><td>Finished?</td><td>Action</td></tr>
+        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</td><td>Volet</td><td>Finished?</td><td>Action</td></tr>
         {% for article in articles %}
         <tr>
             <td>{{ article.docid }}</td>
             <td>{{ article.title }}</td>
             <td>{{ article.year }}</td>
             <td>{{ article.RA }}</td>
+            <td>{{ article.volet }}</td>
             <td>{{ article.termine }}</td>
             <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a></td>
         </tr>
         {% endfor %}
     </table>
+    </div>   <div>-<br /></div>
+
+<footer>
+<div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-sand w3-hover-light-grey" href="{% url 'article_new' %}"><b>New Reference</b></a>
     </div>
+<div class="w3-row w3-theme-d3">
+        <div class="pagination">
+             {% if articles.has_other_pages %}
+                {% if articles.has_previous %}
+                  <a href="?page={{ articles.previous_page_number }}">&laquo;</a>
+                {% else %}
+                   <a href="#" >&laquo;</a>
+                {% endif %}
+                {% for i in articles.paginator.page_range %}
+                  {% if articles.number == i %}
+                   <a href="#" class="active"(current)>{{ i }}</a>
+                  {% else %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+                  {% endif %}
+                {% endfor %}
+                {% if articles.has_next %}
+                  <a href="?page={{ articles.next_page_number }}">&raquo;</a>
+                {% else %}
+                   <a href="#" >&raquo;</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+</footer>
 </body>
 </html>
