@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 from django import forms
 from .models import Articles, Volet
-from django.forms import inlineformset_factory
 
 
 class ArticleForm(forms.ModelForm):

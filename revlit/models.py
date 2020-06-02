@@ -48,7 +48,7 @@ class Articles(models.Model):
         (Retro, 'Retrospective'),
         (Pro, 'Prospective'),
     ]
-    docid = models.IntegerField(blank=True, null=True, verbose_name="1- Document ID",)
+    docid = models.IntegerField(verbose_name="1- Document ID", help_text="Obligatoire")
     volet = models.ForeignKey(Volet, null=True,blank=True, on_delete=models.DO_NOTHING, verbose_name="1a- Volet")
     categomh1 = models.BooleanField(default=False, verbose_name="7a- Revue de littérature?")
     categomh2 = models.BooleanField(default=False, verbose_name="7b- Facteurs extra-individuels?")

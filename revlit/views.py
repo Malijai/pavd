@@ -47,13 +47,35 @@ def article_edit(request, pk):
 
 
 @login_required(login_url=settings.LOGIN_URI)
-def article_list(request):
+def article_list(request, tri=1):
+    if tri == 1:
+        ordre1 = 'authors'
+        ordre2 = 'title'
+        ordre3 = 'year'
+        ordre4 = 'RA'
+    elif tri == 2:
+        ordre1 = 'volet'
+        ordre2 = 'title'
+        ordre3 = 'year'
+        ordre4 = 'RA'
+    elif tri == 3:
+        ordre1 = 'studytype'
+        ordre2 = 'volet'
+        ordre3 = 'title'
+        ordre4 = 'year'
+    elif tri == 4:
+        ordre1 = 'RA'
+        ordre2 = 'volet'
+        ordre3 = 'termine'
+        ordre4 = 'title'
+
     if request.user.groups.filter(name='SuperU').exists():
-        articles_tous = Articles.objects.all().order_by('authors', 'title', 'year')
+        articles_tous = Articles.objects.all().order_by(ordre1, ordre2, ordre3, ordre4)
         superu = 1
     else:
-        articles_tous = Articles.objects.filter(RA=request.user).order_by('authors', 'title', 'year')
+        articles_tous = Articles.objects.filter(RA=request.user).order_by(ordre1, ordre2, ordre3, ordre4)
         superu = 0
+
     paginator = Paginator(articles_tous, 50)
     page = request.GET.get('page')
     try:
@@ -64,7 +86,7 @@ def article_list(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         articles = paginator.page(paginator.num_pages)
-    return render(request, 'articles_list.html', {'articles': articles, 'superu': superu})
+    return render(request, 'articles_list.html', {'articles': articles, 'superu': superu, 'tri': tri})
 
 
 @login_required(login_url=settings.LOGIN_URI)
@@ -230,7 +252,7 @@ def recherche(request):
             volet = request.POST.get('volet', '')
             titre = request.POST.get('recherchetitre', '')
             auteur = request.POST.get('rechercheauteur', '')
-            requete =Q(volet__id=volet)
+            requete = Q(volet__id=volet)
             if titre:
                 requete = Q(title__icontains=titre) & requete
             if auteur:

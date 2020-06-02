@@ -65,7 +65,7 @@
     <div class="w3-container">
 
     <table class="w3-table-all">
-        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</td><td>Volet</td><td>Finished?</td><td>Action</td></tr>
+        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</br><a href="{% url 'article_list' 4 %}"><b>Trier</b></a></td><td>Volet</br><a href="{% url 'article_list' 2 %}"><b>Trier</b></a></td><td>Type d'étude</br><a href="{% url 'article_list' 3 %}"><b>Trier</b></a></td><td>Finished?</td><td>Action</td></tr>
         {% for article in articles %}
         <tr>
             <td>{{ article.docid }}</td>
@@ -73,6 +73,7 @@
             <td>{{ article.year }}</td>
             <td>{{ article.RA }}</td>
             <td>{{ article.volet }}</td>
+            <td>{{ article.studytype }}</td>
             <td>{{ article.termine }}</td>
             <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a></td>
         </tr>
