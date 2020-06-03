@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load comparaisons %}
 
 <html>
 <head>
@@ -55,9 +56,9 @@
     {% for ligne, valeurs in lignes.items %}
     <tr>
         <td>{{ligne}}</td>
-        {% for valeur in valeurs %}
-            <td>{{ valeur.1|default_if_none:"" }}</td>
-        {%endfor %}
+        {% autoescape off %}
+            {% fait_different valeurs %}
+        {% endautoescape %}
     </tr>
     {% endfor %}
 </table>

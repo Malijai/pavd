@@ -217,7 +217,7 @@ def cherche_article(request, doc, volet):
         fields = articles.model._meta.fields
         liste_ras.append(ra['RA'])
         for field in fields:
-            print(field.attname)
+            # print(field.attname)
             value = tuple([ra['RA'], articles.values()[0][field.attname]])
             if field.attname == "volet_id" or \
                field.attname == "type_id" or \
