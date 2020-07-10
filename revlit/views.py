@@ -232,7 +232,7 @@ def cherche_article(request, doc, volet):
                     #print(field.__class__.__name__)
                 else:
                     comparaison[field.verbose_name].append(value)
-    print(liste_ras)
+    #print(liste_ras)
     users = User.objects.filter(pk__in=liste_ras).order_by('id')
 
     return render(request, 'articles_verifie.html', {
