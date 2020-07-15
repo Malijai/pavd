@@ -18,13 +18,20 @@ def article_new(request):
             article = form.save(commit=False)
             article.RA = request.user
             article.save()
+            volet = request.POST.get('volet')
             messages.success(request, "L'article a été ajouté à la liste")
-            return redirect('article_list')
+            return redirect(article_list, volet, 1)
         else:
             messages.error(request, "Il y a eu une erreur dans la création de l'article, recommencez")
     else:
         form = ArticleForm()
     return render(request, 'article_edit.html', {'form': form})
+
+
+@login_required(login_url=settings.LOGIN_URI)
+def accueil(request):
+
+    return render(request, 'accueil.html')
 
 
 @login_required(login_url=settings.LOGIN_URI)
@@ -34,11 +41,12 @@ def article_edit(request, pk):
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             article = form.save()
+            volet = article.volet_id
             messages.success(request, "Les modifications ont été enregistrées")
             if 'Savesurplace' in request.POST:
                 return redirect(article_edit, article.id)
             else:
-                return redirect('article_list')
+                return redirect(article_list, volet, 1)
         else:
             messages.error(request, "Il y a eu une erreur dans la modification de l'article, recommencez")
     else:
@@ -47,35 +55,36 @@ def article_edit(request, pk):
 
 
 @login_required(login_url=settings.LOGIN_URI)
-def article_list(request, tri=1):
+def article_list(request, volet, tri=1, ):
+    volet = volet
     if tri == 1:
         ordre1 = 'authors'
         ordre2 = 'title'
         ordre3 = 'year'
         ordre4 = 'RA'
     elif tri == 2:
-        ordre1 = 'volet'
-        ordre2 = 'title'
-        ordre3 = 'year'
-        ordre4 = 'RA'
+        ordre1 = 'title'
+        ordre2 = 'year'
+        ordre3 = 'RA'
+        ordre4 = 'volet'
     elif tri == 3:
         ordre1 = 'studytype'
-        ordre2 = 'volet'
-        ordre3 = 'title'
-        ordre4 = 'year'
+        ordre2 = 'title'
+        ordre3 = 'year'
+        ordre4 = 'volet'
     elif tri == 4:
         ordre1 = 'RA'
-        ordre2 = 'volet'
-        ordre3 = 'termine'
-        ordre4 = 'title'
+        ordre2 = 'termine'
+        ordre3 = 'title'
+        ordre4 = 'volet'
 
     if request.user.groups.filter(name='SuperU').exists():
-        articles_tous = Articles.objects.all().order_by(ordre1, ordre2, ordre3, ordre4)
+        articles_tous = Articles.objects.filter(volet_id=volet).order_by(ordre1, ordre2, ordre3, ordre4)
         superu = 1
     else:
-        articles_tous = Articles.objects.filter(RA=request.user).order_by(ordre1, ordre2, ordre3, ordre4)
+        articles_tous = Articles.objects.filter(Q(RA=request.user) & Q(volet_id=volet)).order_by(ordre1, ordre2, ordre3, ordre4)
         superu = 0
-
+    levolet = Volet.objects.get(pk=volet)
     paginator = Paginator(articles_tous, 50)
     page = request.GET.get('page')
     try:
@@ -86,7 +95,8 @@ def article_list(request, tri=1):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         articles = paginator.page(paginator.num_pages)
-    return render(request, 'articles_list.html', {'articles': articles, 'superu': superu, 'tri': tri})
+    return render(request, 'articles_list.html', {'articles': articles, 'superu': superu, 'tri': tri,
+                                                  'volet': volet, 'voletnom': levolet.reponse })
 
 
 @login_required(login_url=settings.LOGIN_URI)

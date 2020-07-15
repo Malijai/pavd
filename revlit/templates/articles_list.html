@@ -11,7 +11,7 @@
 <body>
     <header class="w3-row w3-theme-l1" id="myHeader">
          <div class="w3-threequarter w3-padding">
-            <h2>PAVD : Liste des articles codés/ en cours de codification. {{request.user}}</h2>
+            <h2>PAVD : {{ voletnom }} Liste des articles codés/ en cours de codification -- {{request.user}}</h2>
          </div>
          <div class="w3-quarter w3-center">
          </div>
@@ -32,12 +32,9 @@
     <div class="w3-threequarter">
         {% if superu == 1 %}
         <b>IRR:</b>
-        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 1 %}"><b>Santé mentale</b></a>
-        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 2 %}"><b>Radicalisation</b></a>
-        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 3 %}"><b>Violence Sexuelle</b></a>
-        <a class="w3-btn w3-white" href="{% url 'bilan_irr' 4 %}"><b>Violence Conjugale</b></a>
-        <a class="w3-btn w3-white" href="{% url 'recherche' %}"><b>Recherche</b></a>
+        <a class="w3-btn w3-white" href="{% url 'bilan_irr' volet %}"><b>IRR</b></a>
         {% endif %}
+
     </div></div>
 <div class="w3-row w3-theme-d3">
         <div class="pagination">
@@ -65,7 +62,7 @@
     <div class="w3-container">
 
     <table class="w3-table-all">
-        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</br><a href="{% url 'article_list' 4 %}"><b>Trier</b></a></td><td>Volet</br><a href="{% url 'article_list' 2 %}"><b>Trier</b></a></td><td>Type d'étude</br><a href="{% url 'article_list' 3 %}"><b>Trier</b></a></td><td>Finished?</td><td>Action</td></tr>
+        <tr><td>ID</td><td>Title</td><td>Year</td><td>Assistant</br><a href="{% url 'article_list' volet 4 %}"><b>Trier</b></a></td><td>Volet</br><a href="{% url 'article_list' volet 2 %}"><b>Trier</b></a></td><td>Type d'étude</br><a href="{% url 'article_list' volet 3 %}"><b>Trier</b></a></td><td>Finished?</td><td>Action</td></tr>
         {% for article in articles %}
         <tr>
             <td>{{ article.docid }}</td>

@@ -1,0 +1,57 @@
+{% load i18n %}
+{% load static %}
+<html>
+<head>
+<title>PAVD paper evatuation / description</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/revlit/w3.css' %}">
+    <link rel="stylesheet" href="{% static '/revlit/w3-theme-black.css' %}">
+    <script type="text/javascript" src="/static/revlit/jquery.js"></script>
+    <script type="text/javascript" src="/static/revlit/tabber.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sondageM.css" />
+</head>
+<body>
+    <header class="w3-row w3-theme-l1" id="myHeader">
+         <div class="w3-threequarter w3-padding">
+            <h2>PAVD : Accueil </h2>
+         </div>
+         <div class="w3-quarter w3-center">
+         </div>
+    </header>
+    <div id="container">
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="w3-orange" role="alert">
+                    {{msg.message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="container">
+    <div class="w3-row w3-theme-d3">
+    </div>
+
+<div class="w3-container"><h2>Choisir le volet approprié</h2>
+    <div class="w3-row">
+        <div class="w3-quarter">
+         <a class="w3-btn w3-teal w3-hover-light-grey" href="{% url 'article_list' 1 1 %}"><b>Santé mentale</b></a>
+        </div>
+        <div class="w3-quarter">
+        <a class="w3-btn w3-teal w3-hover-light-grey" href="{% url 'article_list' 2 1 %}"><b>Radicalisation</b></a>
+        </div>
+         <div class="w3-quarter">
+        <a class="w3-btn w3-teal w3-hover-light-grey" href="{% url 'article_list' 3 1 %}"><b>Violence Sexuelle</b></a>
+        </div>
+        <div class="w3-quarter">
+        <a class="w3-btn w3-teal w3-hover-light-grey" href="{% url 'article_list' 4 1 %}"><b>Violence Conjougale</b></a>
+        </div>
+ <br /></div>
+    </div>
+    <div class="w3-row w3-theme-d3">
+    </div>
+
+    <div class="footer">
+
+</div>
+</body>
+</html>

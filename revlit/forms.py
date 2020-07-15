@@ -50,7 +50,8 @@ class ArticleForm(forms.ModelForm):
             'variable3', 'variable3t','variable10t','variable4', 'variable4t','variable5','variable5t','variable6', 'variable6t',
             'variable7', 'variable7t','variable8', 'variable8t','variable9','variable11','trajectoire1', 'trajectoire2', 'trajectoire3', 'trajectoire4',
             'trajectoire5', 'trajectoire6', 'trajectoire7', 'trajectoire8', 'trajectoire9','smtvt1', 'smtvt2', 'smtvt3', 'smtvt4', 'smtvt5', 'smtvt6', 'smtvt7','sousetude', 'etudemere','inclussr','tsvrrelevant','trajrelevant',
-            'categomh1', 'categomh2', 'categomh3', 'categomh4', 'categomh5', 'categomh6', 'categomh7', 'categomh8']
+            'categomh1', 'categomh2', 'categomh3', 'categomh4', 'categomh5', 'categomh6', 'categomh7', 'categomh8',
+                  ]
         exclude = ('RA', 'created_at', 'updated_at')
 
 
