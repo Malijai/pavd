@@ -108,6 +108,7 @@ def bilan_irr(request, volet):
     toutesleslignesTsvr = []
     toutesleslignesPath = []
     toutesleslignesVar = []
+    toutesleslignesTipv = []
     with connection.cursor() as cursor:
         text = "select joined.docid from (select a.docid, a.RA_id as RA_a,b.RA_id as RA_b from " \
                "revlit_articles a join revlit_articles b on a.docid = b.docid " \
@@ -123,6 +124,7 @@ def bilan_irr(request, volet):
         ligneTsvr = []
         lignePath = []
         ligneVar = []
+        ligneTipv = []
         irrMH = Articles.objects.values('docid').filter(Q(docid=a_irr[0])).order_by('docid')\
             .annotate(cpt1=Sum('categomh1'),cpt2=Sum('categomh2'),cpt3=Sum('categomh3'),
                       cpt4=Sum('categomh4'),cpt5=Sum('categomh5'),cpt6=Sum('categomh6'),
@@ -192,6 +194,14 @@ def bilan_irr(request, volet):
                          traduitbool(irrVar[0]['k']),traduitbool(irrVar[0]['l']), traduitbool(irrVar[0]['m']),
                          traduitbool(irrVar[0]['n']),traduitbool(irrVar[0]['o'])])
         toutesleslignesVar.append(ligneVar)
+        irrTipv = Articles.objects.values('docid').filter(Q(docid=a_irr[0])).order_by('docid') \
+            .annotate(h=Sum('married'), i=Sum('commited'), j=Sum('domestic'), k=Sum('openr'), l=Sum('divorced'),
+                      m=Sum('cohab'))
+        ligneTipv.append(a_irr[0])
+        ligneTipv.append(nombreirr)
+        ligneTipv.extend([traduitbool(irrTipv[0]['h']), traduitbool(irrTipv[0]['i']),traduitbool(irrTipv[0]['j']),
+                         traduitbool(irrTipv[0]['k']),traduitbool(irrTipv[0]['l']), traduitbool(irrTipv[0]['m'])])
+        toutesleslignesTipv.append(ligneTipv)
 
     return render(request, 'articles_irr.html', {
                                                  'lignesMH9': toutesleslignesMH,
@@ -201,6 +211,7 @@ def bilan_irr(request, volet):
                                                  'lignesTsvr8': toutesleslignesTsvr,
                                                  'lignesPath10': toutesleslignesPath,
                                                  'lignesVar9': toutesleslignesVar,
+                                                 'lignesTipv7': toutesleslignesTipv,
                                                  'volet':volet
                                                  })
 

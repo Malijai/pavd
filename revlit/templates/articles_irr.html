@@ -147,6 +147,22 @@
          {% endfor %}
     </table>
     </div>
+ <div class="tabbertab"><h3>Data specific to TIPV</h3><b>Data specific to TIPV</b>
+    <table class="w3-table-all">
+        <tr>
+        <td>Docid - Voir</td><td>Nb Codes</td><td>3.1</td><td>3.2</td><td>3.3</td><td>3.4</td>
+        <td>3.5</td><td>3.6</td>
+        </tr>
+        {% for ligne in lignesTipv7 %}
+        <tr>
+            <td><a href="{% url 'cherche_article' ligne.0 volet %}">{{ligne.0}}</a></td>
+            <td>{{ligne.1}}</td><td>{{ligne.2}}</td>
+            <td>{{ligne.3}}</td><td>{{ligne.4}}</td>
+            <td>{{ligne.5}}</td><td>{{ligne.6}}</td><td>{{ligne.7}}</td>
+        </tr>
+         {% endfor %}
+    </table>
+    </div>
 </div>
 </div>
 

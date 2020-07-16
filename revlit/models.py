@@ -208,6 +208,25 @@ class Articles(models.Model):
     termine = models.BooleanField(default=False, verbose_name="Check if the codification of the paper is finished")
     tsvrrelevant = models.TextField(blank=True, null=True, verbose_name="TSVR Any other relevant info")
     trajrelevant = models.TextField(blank=True, null=True, verbose_name="Trajectories Any other relevant info")
+    nbcouples = models.CharField(blank=True, null=True, max_length=250, verbose_name="1. Number of couples")
+    lengthcouples = models.CharField(blank=True, null=True, max_length=250,
+                                     verbose_name="2. Length of the intimate partner relationship (months)")
+    married = models.BooleanField(default=False, verbose_name="3.1. Check if type of relationship is Maried")
+    marriedtxt = models.CharField(blank=True, null=True, max_length=250,
+                                  verbose_name="3.1.a Relationship is Maried Text")
+    commited = models.BooleanField(default=False, verbose_name="3.2. Check if committed relationship")
+    commitedtxt = models.CharField(blank=True, null=True, max_length=250,
+                                   verbose_name="3.2.a Committed relationship Text")
+    domestic = models.BooleanField(default=False, verbose_name="3.3. Check if domestic partnership")
+    domestictxt = models.CharField(blank=True, null=True, max_length=250,
+                                   verbose_name="3.3.a Domestic partnership Text")
+    openr = models.BooleanField(default=False, verbose_name="3.4. Check if open relationship")
+    openrtxt = models.CharField(blank=True, null=True, max_length=250, verbose_name="3.4.a Open relationship Text")
+    divorced = models.BooleanField(default=False, verbose_name="3.5. Check if divorced/separated")
+    divorcedtxt = models.CharField(blank=True, null=True, max_length=250, verbose_name="3.5.a Divorced/separated Text")
+    cohab = models.BooleanField(default=False, verbose_name="3.6. Check if cohabitation")
+    cohabtxt = models.CharField(blank=True, null=True, max_length=250, verbose_name="3.6.a Cohabitation Text")
+    orientationsex = models.CharField(blank=True, null=True, max_length=250, verbose_name="4. Sexual orientation")
 
     class Meta:
         ordering = ['authors', 'title', 'year']
