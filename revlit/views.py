@@ -110,10 +110,13 @@ def bilan_irr(request, volet):
     toutesleslignesVar = []
     toutesleslignesTipv = []
     with connection.cursor() as cursor:
-        text = "select joined.docid from (select a.docid, a.RA_id as RA_a,b.RA_id as RA_b from " \
-               "revlit_articles a join revlit_articles b on a.docid = b.docid " \
+        # text = "select joined.docid from (select a.docid, a.RA_id as RA_a,b.RA_id as RA_b from " \
+        #        "revlit_articles a join revlit_articles b on a.docid = b.docid " \
+        #        "where a.volet_id = " + str(volet) + " and a.termine = 1 and b.termine = 1 " \
+        #        "and a.RA_id < b.RA_id) as joined"
+        text = "select a.docid from revlit_articles a join revlit_articles b on a.docid = b.docid " \
                "where a.volet_id = " + str(volet) + " and a.termine = 1 and b.termine = 1 " \
-               "and a.RA_id < b.RA_id) as joined"
+               "and a.RA_id < b.RA_id"
         cursor.execute(text)
         articles_irr = cursor.fetchall()
     for a_irr in articles_irr:
