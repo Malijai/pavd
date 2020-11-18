@@ -8,7 +8,22 @@ from .models import Articles, Volet, User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Count, Sum, Avg
 from django.db import connection
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.units import inch
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+#A necessite l'installation de reportlab (pip install reportlab)
+import datetime
 
+NOM_FICHIER_PDF = "Extraction_VS.pdf"
+TITRE = "PAVD : extraction par fiche"
+PAGE_INFO = "Printed date: " + datetime.datetime.now().strftime('%Y/%m/%d')
+PAGE_HEIGHT = defaultPageSize[1]
+PAGE_WIDTH = defaultPageSize[0]
+styles = getSampleStyleSheet()
+DATE = datetime.datetime.now().strftime('%Y %b %d')
 
 @login_required(login_url=settings.LOGIN_URI)
 def article_new(request):
@@ -292,3 +307,57 @@ def recherche(request):
         form_rech = RechercheForm()
 
     return render(request, 'Recherche.html', {'form': form_rech})
+
+
+def fiche_pdf(request, pk):
+    fichier = str(pk) + '_' + NOM_FICHIER_PDF
+#    doc = SimpleDocTemplate("/tmp/{}".format(NOM_FICHIER_PDF))
+    doc = SimpleDocTemplate("/tmp/{}".format(fichier))
+    fiche = Articles.objects.get(pk=pk)
+    Story = []
+    #Story = [Spacer(1, 0.5 * inch)]
+    titre = "Doc ID: {}; Title : {}; Year: {}".format(fiche.docid, fiche.title, fiche.year)
+    Story.append(Paragraph(titre, styles["Heading2"]))
+    Story.append(Spacer(1, 0.25 * inch))
+#    Story = [] # (si on ne veut pas de premiere page differente on ne met pas d'Espace en haut de la 1ere)
+
+    articles = Articles.objects.filter(pk=pk)
+    fields = articles.model._meta.fields
+    for field in fields:
+       # print(field.attname)
+        value = articles.values()[0][field.attname]
+        if value is None:
+           value = ""
+        ptext = "<b>{}</b> : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}".format(field.verbose_name, value)
+        p = Paragraph(ptext, styles["Normal"])
+        Story.append(p)
+    doc.build(Story, onFirstPage=myFirstPage, onLaterPages=myLaterPages)
+
+    fs = FileSystemStorage("/tmp")
+    with fs.open(fichier) as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(fichier)
+    return response
+
+#Exportation des questions en PDF
+def myFirstPage(patron, _):
+    patron.saveState()
+    patron.setFont('Helvetica',16)
+    patron.drawCentredString(PAGE_WIDTH/2.0, PAGE_HEIGHT - 45, TITRE)
+    patron.setFont('Helvetica',10)
+    patron.setStrokeColorRGB(0, 0, 0)
+    patron.setLineWidth(0.5)
+    patron.line(0, 65, PAGE_WIDTH - 0, 65)
+    patron.drawString(inch, 0.70 * inch, "%s" % PAGE_INFO)
+    patron.restoreState()
+
+
+def myLaterPages(patron, doc):
+    patron.saveState()
+    patron.setFont('Helvetica',10)
+    patron.setStrokeColorRGB(0, 0, 0)
+    patron.setLineWidth(0.5)
+    patron.line(0, 65, PAGE_WIDTH - 0, 65)
+    patron.drawString(inch, 0.70 * inch, "PAVD / Page %d %s" % (doc.page, PAGE_INFO))
+    patron.restoreState()
+

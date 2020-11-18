@@ -72,8 +72,9 @@
             <td>{{ article.volet }}</td>
             <td>{{ article.studytype }}</td>
             <td>{{ article.termine }}</td>
-            <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a></td>
-        </tr>
+            <td><a href="{% url 'article_edit' article.id %}">Évaluer / coder l'article</a><br />
+             <a href="{% url 'fiche_pdf' article.id %}">Imprimer la fiche</a></td>
+       </tr>
         {% endfor %}
     </table>
     </div>   <div>-<br /></div>
