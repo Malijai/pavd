@@ -1,0 +1,62 @@
+/* general presentation stuff */
+
+body, p, ul, a, table {
+	background-color: #fff;
+	color: #000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	width: 100%;
+	margin: 6px 10px 6px 0px;
+	white-space:nowrap;
+}
+
+td, th {
+	background-color: #fff;
+	color: #000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	width: 25%;
+	margin: 5px 5px 5px 0px;
+}
+
+.tabbernav {
+ display:none;
+}
+
+p, p.espace {
+	text-align: justify;
+}
+
+h1 {
+	text-align:center;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16pt;
+}
+
+h2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14pt;
+}
+
+h3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+}
+
+#content {
+	background-color: #fff;
+	width: 100%;
+	border: none;
+}
+
+.navigation, #footer, .noprint, .img-grande, .entetelangue, .image, .w3-button {
+	display: none;
+}
+
+.page-header, .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+	display: none;
+}
+
+
+
+
